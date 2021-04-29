@@ -30,9 +30,6 @@
   "environment": {
     "uilayout": "editor-terminal"
   },
-  "files": [
-    "server.py", ".env", "ml-demo.py"
-  ],
   "backend": {
     "imageid": "ubuntu:2004"
   }
