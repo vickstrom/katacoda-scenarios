@@ -1,11 +1,14 @@
 ## A server that listens on pull request events 
+
+Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the python module [Flask](https://flask.palletsprojects.com/en/1.1.x/). 
+
 `pip3 install flask`{{execute interrupt}}
 
-Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the webframework [Flask](https://flask.palletsprojects.com/en/1.1.x/). First, we create a webserver in a file called `server.py`. 
+Then, create a webserver in a file called `server.py`.      
+
 `touch server.py`{{execute}}
 
-
-That listens on an arbitrary port, lets say `1337`, and that expects a POST-request on endpoint `/mlops-server`. Open `server.py`{{open}} and add this content: 
+This should listen on an arbitrary port, lets say `1337`, and that expects a POST-request on endpoint `/mlops-server`. Open `server.py`{{open}} and add this content: 
 
 <pre class="file" data-filename="server.py" data-target="prepend">
 from flask import Flask, request
