@@ -17,7 +17,7 @@ def evaluate_pull_request(commit_sha, ssh_url):
     subprocess.run(["git", "clone", ssh_url, project_dst])
     subprocess.run(["git", "checkout", commit_sha], cwd=f"./{project_dst}")
     subprocess.run(["pip", "install", "-r", f"{project_dst}/requirements.txt"])
-    subprocess.run(["python3", f"{project_dst}/ml/demo.py"])
+    subprocess.run(["python3", f"{project_dst}/demo.py"])
     subprocess.run(["rm", "-rf", project_dst])
     
     with open(f"result.txt", "r") as f:
