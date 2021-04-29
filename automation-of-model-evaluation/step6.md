@@ -31,7 +31,11 @@ def generate_jwt():
 # ...
 </pre>
 
-Using `generate_jwt()` we create a function for fetching the __access token__, which essentially sends a `POST` request to `https://api.github.com/app` in order to fetch an access token for a certain __GitHub app__.
+Using `generate_jwt()` we create a function for fetching the __access token__, which essentially sends a `POST` request to `https://api.github.com/app` in order to fetch an access token for a certain __GitHub app__. Let's use `requests` to do a `POST` request.
+
+<pre class="file" data-filename="server.py" data-target="prepend">
+import requests 
+</pre>
 
 <pre class="file">
 # ...
@@ -42,12 +46,12 @@ def get_token():
         "Authorization": f"Bearer {generate_jwt()}",
         "Accept": "application/vnd.github.v3+json"
     }
-    r = requests.post(f"{GITHUB_APP_URL}/installations/{INSTALL_TOKEN}/access_tokens", headers=headers)
+    r = requests.post(f"{GITHUB_APP_URL}/installations/{INSTALL_ID}/access_tokens", headers=headers)
     return r.json()["token"]
 # ...
 </pre>
 
-To later post a message on a certain __pull request__, we use the __access token__ to send a `POST` request with a body containing our message.
+To later post a message on a certain __pull request__, we use the __access token__ to send a `POST` request with a body containing our message.  
 
 <pre class="file">
 # ...
