@@ -1,6 +1,6 @@
 
 ## Showcase 
-![alt text](./images/result.gif "End result gif")    
+![alt text](./assets/result.gif "End result gif")    
 
 ### Prerequisites
 
