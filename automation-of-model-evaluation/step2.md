@@ -15,17 +15,18 @@ As said above, these will be filled in later. To then access these variables, we
 
 `pip3 install python-dotenv`{{execute interrupt}}
 
-Then add these to `server.py`
+Then add these to `server.py`{{open}}
 
-<pre class="file" data-filename="server.py" data-target="prepend">
+<pre class="file">
+# ...
 import os
 from dotenv import load_dotenv
-</pre> 
 
-<pre class="file" data-filename="server.py" data-target="append">
 load_dotenv()
 
 INSTALL_ID = os.getenv('INSTALL_ID')
 APP_ID = os.getenv('APP_ID')
 PRIVATE_KEY_PATH = os.getenv('PRIVATE_KEY_PATH')
+
+# ...
 </pre> 
