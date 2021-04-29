@@ -1,5 +1,3 @@
-## Register a GitHub App
-
 Now we need to create a GitHub App and install in on our machine learning repository. Why you might ask? 🧐 Webhooks can be configured without an app, however commenting on our pull request requires us to communicate via GitHub. So lets create an App. First navigate to their [app page](https://github.com/settings/apps).
 
 ![alt text](./assets/add_app.png "create_app")

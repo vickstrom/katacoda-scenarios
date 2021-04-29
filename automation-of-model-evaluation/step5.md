@@ -1,4 +1,3 @@
-## Evaluating our Pull Requests 
 
 Okay, now we have our server that tells us when someone has created a pull request and we have a model. Let's combine the two; train & evaluate the model when someone has created a pull request!
 
