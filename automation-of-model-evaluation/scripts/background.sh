@@ -1,7 +1,9 @@
 #!/bin/bash
+apt update
+apt install python3-pip
 
-echo "We're setting up your enviroment, please wait until you hear the beep"
+pip3 install -r requirements.txt 
 
 sleep 5
 
-echo "Beep"
+echo "done" >> /opt/.backgroundfinished
