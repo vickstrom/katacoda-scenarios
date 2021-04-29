@@ -17,7 +17,7 @@ As said above, these will be filled in later. To then access these variables, we
 
 Then add these to `server.py`
 
-<pre> 
+<pre class="file" data-filename="server.py"> 
 import os
 from dotenv import load_dotenv
 
