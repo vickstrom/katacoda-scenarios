@@ -39,7 +39,8 @@
       },
       {
         "title": "Step 8",
-        "text": "step8.md"
+        "text": "step8.md",
+        "code": "scripts/step8_foreground.sh"
       }
     ],
     "intro": {
