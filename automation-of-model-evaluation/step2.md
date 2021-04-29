@@ -1,33 +1,27 @@
-## Storing environment variables
-Communicating with an API requires authenication and IDs specific to your project. The various keys and IDs we will collect in the coming parts should __not__ be uploaded to any public repository. We will handle these by a creating an environment file called `.env`. 
-`touch .env`{{execute interrupt}}
+## A server that listens on pull request events 
+`pip3 install flask`{{execute interrupt}}
 
-The data we need to store there is the __app ID__, the __install ID__, and the path to the __private key__.  
+Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the webframework [Flask](https://flask.palletsprojects.com/en/1.1.x/). First, we create a webserver in a file called `server.py`. 
+`touch server.py`{{execute}}
 
-```bash
-# .env
-APP_ID=<OUR APP ID>
-PRIVATE_KEY_PATH=<OUR PATH TO PRIVATE KEY>
-INSTALL_ID=<OUR INSTALL ID>
-```
 
-As said above, these will be filled in later. To then access these variables, we will make use of the `os` & `dotenv` module. Let's install `dotenv` (`os` is standard to python)      
-
-`pip3 install python-dotenv`{{execute interrupt}}
-
-Then add these to `server.py`{{open}}
+That listens on an arbitrary port, lets say `1337`, and that expects a POST-request on endpoint `/mlops-server`. Open `server.py`{{open}} and add this content: 
 
 <pre class="file" data-filename="server.py" data-target="prepend">
-import os
-from dotenv import load_dotenv
+from flask import Flask, request
+
+# initialize server
+app = Flask(__name__)
+
+# add route & method
+@app.route('/mlops-server', methods=['POST'])
+def mlops_server_endpoint():
+    request_data = request.get_json()
+    return 'Awaiting POST'
+
+# start server 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=False, port=1337)
 </pre>
 
-<pre class="file">
-# ...
-load_dotenv()
-
-INSTALL_ID = os.getenv('INSTALL_ID')
-APP_ID = os.getenv('APP_ID')
-PRIVATE_KEY_PATH = os.getenv('PRIVATE_KEY_PATH')
-# ...
-</pre> 
+By running `python3 server.py`{{execute interrupt}}, you start the webserver. Now the server awaits a POST request at `http://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com/mlops-server`. The __POST__ request will contain JSON data in its body, which will contain all the data belonging to a pull request event. This URL will be used when creating our GitHub App.

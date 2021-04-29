@@ -1,27 +1,21 @@
-## A server that listens on pull request events 
-`pip3 install flask`{{execute interrupt}}
+## The Machine Learning Project Structure
+In this tutorial we're using Python along with the [Keras](https://keras.io/) and [Tensorflow](https://www.tensorflow.org/) libraries to create a simple model to classify digits from the MNIST dataset. This can of course be modified to your own setup, but for the sake of the tutorial, we have included a folder containing a model located [here <LINK>](./code/ml). This includes instructions on how to run it. For simplicity sake, we download the MNIST using [`keras.datasets`](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/mnist/load_data). 
 
-Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the webframework [Flask](https://flask.palletsprojects.com/en/1.1.x/). First, we create a webserver in a file called `server.py`. 
-`touch server.py`{{execute}}
+Essentially, the included code does the following steps:     
+* Downloads the dataset,
+* Preprocesses the data,
+* Creates the model,
+* Compiles the model,
+* Trains the model,
+* Evaluates it. 
 
+After all of these steps are done, it saves the result to a file to a folder. In our case, it is saved as `result.txt` with a JSON object containing the loss and accuarcy.
+```python
+# result.txt
+{'loss': 1, 'accuracy': 1}
+```
+> ⚠️  Remember that the results file produced from the model must match the file that the server is supposed to read from! ⚠️  
 
-That listens on an arbitrary port, lets say `1337`, and that expects a POST-request on endpoint `/mlops-server`. Open `server.py`{{open}} and add this content: 
+> If you want to don't have a repository where you want to implement this, __create a new repository__ and copy the content of our [small demo](./code/ml). The `demo.py` and `requirements.txt` should be at the root of the repository.
 
-<pre class="file" data-filename="server.py" data-target="prepend">
-from flask import Flask, request
-
-# initialize server
-app = Flask(__name__)
-
-# add route & method
-@app.route('/mlops-server', methods=['POST'])
-def mlops_server_endpoint():
-    request_data = request.get_json()
-    return 'Awaiting POST'
-
-# start server 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False, port=1337)
-</pre>
-
-By running `python3 server.py`{{execute interrupt}}, you start the webserver. Now the server awaits a POST request at `http://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com/mlops-server`. The __POST__ request will contain JSON data in its body, which will contain all the data belonging to a pull request event. Lets get GitHub to send us these events to our endpoint.
+![alt text](./assets/root_ml_project.png "create_app")
