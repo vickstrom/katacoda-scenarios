@@ -48,10 +48,10 @@ Click create. Voilá, we have our first App. 🥳
 
 ![alt text](./assets/about_app.png "create_app")
 
-Save the __App ID__ inside `.env`{{open}} after the equals sign. It should look something like this (with your own __App ID__):
-```
+Save the __App ID__ inside `.env`{{open}} after the equals sign with your own __App ID__:
+<pre class="file">
 APP_ID=6329884
-```
+</pre>
 
 ### Get private key
 In the future, we need to authenticate as the app through our server, so generate a private-key! This is found at the bottom of the same page.
@@ -61,12 +61,12 @@ In the future, we need to authenticate as the app through our server, so generat
 Download it and copy its content.  
 
 ![alt text](./assets/save_private_key.png "create_app")
-Let's create a file for storing it: `private-key.pem`{{open}}. Copy the contents of the key to that file. Additionally, save the path to the key inside `.env`{{open}}. Now it should look similar to this: 
+Let's create a file for storing it: `private-key.pem`{{open}}. Copy the contents of the key to that file. Additionally, save the path to the key inside `.env`{{open}}.  
 
-```bash
+<pre class="file">
 APP_ID=6329884
 PRIVATE_KEY_PATH=private-key.pem
-```
+</pre>
 
 ### Install the app
 
@@ -84,9 +84,9 @@ Click on __Install__.
 
 ![alt text](./assets/installation.png "create_app")
 
-Look 👀 See the installation ID in the url? This ID is used when we want to specify which repository we want to add a comment to. Save that as well.
+Look 👀 See the installation ID in the url? This ID is used when we want to specify which repository we want to add a comment to. Save that to `.env`{{open}} as well. Now it should look similar to this (again, with your own __APP_ID__ and __INSTALL_ID__):
 
-<pre class="file" data-filename=".env" data-target="append">
+<pre class="file">
 APP_ID=6329884
 PRIVATE_KEY_PATH=private-key.pem
 INSTALL_ID=92312521

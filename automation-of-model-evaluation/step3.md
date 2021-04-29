@@ -1,15 +1,14 @@
 ## Storing environment variables
 Communicating with an API requires authenication and IDs specific to your project. The various keys and IDs we will collect in the coming parts should __not__ be uploaded to any public repository. We will handle these by a creating an environment file called `.env`. 
-`touch .env`{{execute interrupt}}
+`touch .env`{{open interrupt}}
 
 The data we need to store there is the __app ID__, the __install ID__, and the path to the __private key__.  
 
-```bash
-# .env
+<pre class="file" data-filename=".env" data-target="replace">
 APP_ID=<OUR APP ID>
 PRIVATE_KEY_PATH=<OUR PATH TO PRIVATE KEY>
 INSTALL_ID=<OUR INSTALL ID>
-```
+</pre>
 
 As said above, these will be filled in later. To then access these variables, we will make use of the `os` & `dotenv` module. Let's install `dotenv` (`os` is standard to python)      
 
