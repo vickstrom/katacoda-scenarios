@@ -2,6 +2,4 @@ flask
 pyjwt
 python-dotenv
 request
-numpy
-tensorflow
 cryptography

@@ -1,8 +1,8 @@
 #!/bin/bash
-apt update
-apt install python3-pip
+apt update 
+apt -y install python3-pip
 
-pip3 install -r requirements.txt 
+yes | pip3 install -U -r requirements.txt 
 
 sleep 5
 
