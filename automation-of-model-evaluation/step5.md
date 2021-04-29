@@ -4,11 +4,12 @@ Okay, now we have our server that tells us when someone has created a pull reque
 
 The plan is to have the server clone the repository, checkout the latest commit, install all the dependencies, evaluate the model against the base. To do this, we can run shell-commands via Python. To do this, we utilize the module subprocess and the method run(). First, we clone and change the folder name to an arbitrary string project_dst, with the help of module uuid; the reason for this is to avoid collisions with folders that already exist. Next, we checkout a specific version of the cloned repository (with cwd we change our current directory inside the project_dst folder). Then, we install the dependencies of the machine learning project, and test the model expecting a result.txt. For future pull requests, we can't use the same cloned directory, so we move the directory to the wastebasket ️️
 
-First, import the `subprocess` & `json` modules.
+First, import the `subprocess`, `json` and `uuid` modules.
 
 <pre class="file" data-filename="server.py" data-target="prepend">
 import json
 import subprocess 
+import uuid
 </pre>
 
 Then add the evaluate pull request function.
@@ -26,6 +27,8 @@ def evaluate_pull_request(commit_sha, ssh_url):
         return json.load(f) 
 # ...
 </pre>
+
+> Notice how we depend on the project layout via the paths here (`{project_ds}/requirements.txt` and `{project_dst}/demo.py`). If you use your own project, make sure you call the correct files!
 
 What data from the pull request do we need? Well, we need the ssh_url of the repository in order to clone it and then commit_sha in order to checkout the latest changes. Note that we need the ssh_url and commit_sha of both the head and base as we want to compare the changes. Additionally, we need the comments_url to have our application comment the results on the pull request. Let's create two utility functions for this and add this to `server.py`:
 
