@@ -8,8 +8,7 @@ As this tutorial makes use of GitHub itself, there are some prerequisites to do 
 
 The generel steps to complete our goal is described below. In further sections, there will be more detailed instructions.
 
-1. A server that listens on pull request events.   
-
+1. A server that listens on pull request events.     
     For every event on GitHub, you have the option to specify an HTTP endpoint where you want to retrieve data regarding the event. In our case, we want to listen to the event of creation of a pull request. To listen, we need to create a webserver than listens for a __PUSH event__ for a specific endpoint. To be able to specify which endpoint and later on access the [GitHub API](https://docs.github.com/en/rest), we need to install our own [GitHub App](https://docs.github.com/en/developers/apps) on the specific repository.
    
 2. Evaluate the model inside the pull request.  
