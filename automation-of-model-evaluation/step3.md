@@ -76,6 +76,8 @@ Click on __Install__.
 Look 👀 See the installation ID in the url? This ID is used when we want to specify which repository we want to add a comment to. Save that as well.
 
 <pre class="file" data-filename=".env" data-target="append">
+APP_ID=6329884
+PRIVATE_KEY_PATH=private-key.pem
 INSTALL_ID=92312521
 </pre>
 

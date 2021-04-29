@@ -40,7 +40,6 @@ def get_token():
     }
     r = requests.post(f"{GITHUB_APP_URL}/installations/{INSTALL_TOKEN}/access_tokens", headers=headers)
     return r.json()["token"]
-
 # ...
 </pre>
 

@@ -24,12 +24,10 @@ from dotenv import load_dotenv
 
 <pre class="file">
 # ...
-
 load_dotenv()
 
 INSTALL_ID = os.getenv('INSTALL_ID')
 APP_ID = os.getenv('APP_ID')
 PRIVATE_KEY_PATH = os.getenv('PRIVATE_KEY_PATH')
-
 # ...
 </pre> 
