@@ -1,12 +1,6 @@
 
 We have installed dependencies such as `tensorflow`, `numpy` in the background.
 
-Please run the following command to verify that everything is installed:
-
-`cat /opt/.backgroundfinished`{{execute}}
-
-Expect the word `done`. 
-
 Start your server `python3 server.py`{{execute}}.
 
 Now create a pull request to your ml-repo and add the label. You should expect:

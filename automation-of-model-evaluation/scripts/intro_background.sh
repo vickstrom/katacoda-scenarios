@@ -2,8 +2,10 @@
 apt update 
 apt -y install python3-pip
 
-yes | pip3 install -U -r requirements.txt 
+echo "done" >> /opt/.pipdep
 
-sleep 5
+yes | pip3 install -U tensorflow 
+yes | pip3 install -U cryptography 
+yes | pip3 install -U numpy 
 
-echo "done" >> /opt/.backgroundfinished
+echo "done" >> /opt/.packages
