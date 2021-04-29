@@ -47,8 +47,3 @@ def mlops_server_endpoint():
     return 'Awaiting POST'
 # ...
 </pre>
-
-_Yippie!_ 🎉  
-If you now open a pull request and add an `evaluate` label you should see that this application works! This tutorial contains a proof-of-concept of how one could build a server to evaluate pull requests containing ML models. This can hopefully be altered to _your_ needs and inspire to automate more parts of _your_ development process!   
-
-![alt text](./assets/result.gif "End result gif") 
