@@ -24,4 +24,4 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=False, port=1337)
 </pre>
 
-By running `python3 server.py`{{execute interrupt}}, you start the webserver. Now the server awaits a POST request at `http://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com/mlops-server`. The __POST__ request will contain JSON data in its body, which will contain all the data belonging to a pull request event. Lets get GitHub to send us these events to our endpoint.
+By running `python3 server.py`{{execute interrupt}}, you start the webserver. Now the server awaits a POST request at `http://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com/mlops-server`. The __POST__ request will contain JSON data in its body, which will contain all the data belonging to a pull request event. This URL will be used when creating our GitHub App.
