@@ -1,4 +1,4 @@
-## 1. A server that listens on pull request events 
+## A server that listens on pull request events 
 `pip3 install flask`{{execute interrupt}}
 
 Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the webframework [Flask](https://flask.palletsprojects.com/en/1.1.x/). First, we create a webserver in a file called `server.py`. 

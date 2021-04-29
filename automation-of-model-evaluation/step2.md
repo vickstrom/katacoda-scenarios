@@ -1,4 +1,4 @@
-## 2. Storing environment variables
+## Storing environment variables
 Communicating with an API requires authenication and IDs specific to your project. The various keys and IDs we will collect in the coming parts should __not__ be uploaded to any public repository. We will handle these by a creating an environment file called `.env`. 
 `touch .env`{{execute}}
 
