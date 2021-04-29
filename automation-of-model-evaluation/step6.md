@@ -16,10 +16,10 @@ def generate_jwt():
     pemfile.close()
     payload = {
         "iat": int(time.time() - 60),
-        "exp": int(time.time() + (10 * 60)),
+        "exp": int(time.time() + (10 * 60)) - 10,
         "iss": APP_ID
     }
-    return jwt.encode(payload, key, algorithm="RS256") 
+    return jwt.encode(payload, key, algorithm="RS256")
 # ...
 </pre>
 

@@ -35,8 +35,8 @@ def get_commits(data):
 
 def get_urls(data):
     return data["pull_request"]["comments_url"], \
-           data["pull_request"]["head"]["repo"]["ssh_url"], \
-           data["pull_request"]["base"]["repo"]["ssh_url"] 
+           data["pull_request"]["head"]["repo"]["html_url"], \
+           data["pull_request"]["base"]["repo"]["html_url"]
 # ...
 </pre>
 
