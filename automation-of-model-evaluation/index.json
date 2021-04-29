@@ -6,39 +6,39 @@
   "details": {
     "steps": [
       {
-        "title": "Step 0",
+        "title": "Introduction",
         "text": "step0.md"
       },
       {
-        "title": "Step 1",
+        "title": "The Machine Learning Project Structure",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "A server that listens on pull request events ",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Storing environment variable",
         "text": "step3.md"
       },
       {
-        "title": "Step 4",
+        "title": "Register a GitHub App",
         "text": "step4.md"
       },
       {
-        "title": "Step 5",
+        "title": "Evaluating our Pull Requests",
         "text": "step5.md"
       },
       {
-        "title": "Step 6",
+        "title": "Commenting a Pull Request",
         "text": "step6.md"
       },
       {
-        "title": "Step 7",
+        "title": "Connecting the dots",
         "text": "step7.md"
       },
       {
-        "title": "Step 8",
+        "title": "Conclusion",
         "text": "step8.md",
         "code": "scripts/step8_foreground.sh"
       }

@@ -1,4 +1,3 @@
-## 5. Commenting a Pull Request 
 In section 1, the communication with the repository was rather one-sided; the server could only _listen_ to __Webhook events__. In order to send requests _to_ our repository, we need to add functionality. First of all, we need to fetch an __access token__. The purpose of the __access token__ is authenticate against GitHub. This is done by constructing a __JSON Web Token__ (JWT) based on the __app ID__ and __private key__ from section 2.
 
 Let's generate our __JWT__. The different `time` fields (`iat`, `exp`) represent for how long this should be valid in terms of seconds. For this, we'll use the `PyJWT` module.   

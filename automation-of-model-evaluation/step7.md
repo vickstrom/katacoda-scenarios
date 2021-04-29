@@ -1,4 +1,3 @@
-## 6. Connecting the dots
 Finally, we can assemble everything to evaluate a model from a certain pull request and send the results! If we would like, we could also format our message to make them more readable, kind of like this: 
 
 | Source| Loss           | Accuracy            |
