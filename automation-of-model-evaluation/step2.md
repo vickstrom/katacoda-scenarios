@@ -17,16 +17,17 @@ As said above, these will be filled in later. To then access these variables, we
 
 Then add these to `server.py`{{open}}
 
-<pre class="file">
-# ...
+<pre class="file" data-filename="server.py" data-target="prepend">
 import os
 from dotenv import load_dotenv
+</pre>
 
+<pre class="file">
+# ...
 load_dotenv()
 
 INSTALL_ID = os.getenv('INSTALL_ID')
 APP_ID = os.getenv('APP_ID')
 PRIVATE_KEY_PATH = os.getenv('PRIVATE_KEY_PATH')
-
 # ...
 </pre> 

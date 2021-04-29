@@ -11,6 +11,7 @@ import subprocess
 
 Then add the evaluate pull request function.
 <pre class="file">
+# ...
 def evaluate_pull_request(commit_sha, ssh_url):
     project_dst =  uuid.uuid4().hex
     subprocess.run(["git", "clone", ssh_url, project_dst])
@@ -21,11 +22,13 @@ def evaluate_pull_request(commit_sha, ssh_url):
     
     with open(f"result.txt", "r") as f:
         return json.load(f) 
+# ...
 </pre>
 
-What data from the pull request do we need? Well, we need the ssh_url of the repository in order to clone it and then commit_sha in order to checkout the latest changes. Note that we need the ssh_url and commit_sha of both the head and base as we want to compare the changes. Additionally, we need the comments_url to have our application comment the results on the pull request. Let's create two utility functions for this and add this to server.py:
+What data from the pull request do we need? Well, we need the ssh_url of the repository in order to clone it and then commit_sha in order to checkout the latest changes. Note that we need the ssh_url and commit_sha of both the head and base as we want to compare the changes. Additionally, we need the comments_url to have our application comment the results on the pull request. Let's create two utility functions for this and add this to `server.py`:
 
 <pre class="file">
+# ...
 def get_commits(data):
     return data["pull_request"]["head"]["sha"], \
            data["pull_request"]["base"]["sha"]
@@ -34,11 +37,13 @@ def get_urls(data):
     return data["pull_request"]["comments_url"], \
            data["pull_request"]["head"]["repo"]["ssh_url"], \
            data["pull_request"]["base"]["repo"]["ssh_url"] 
+# ...
 </pre>
 
 We also need to specify when this could be run. For instance, if we just made a pull request that updated documentation or similar, we don't need to run all of this testing as the model hasn't been changed. To solve this, we will create a label in our repository which is treated as a flag for letting our server know when to evaluate it. We will call this label evaluate. This also means that we need to create some form of validation function that asserts if it's a valid response intended for testing and comparing the model. In the case of GitHub webhooks, we want to listen of the labeled action for a pull_request. We also need to see if it contains our label.
 
 <pre class="file">
+# ...
 def is_valid_response(data):
     is_valid = False
     keys = data.keys()
@@ -51,11 +56,13 @@ def is_valid_response(data):
                 is_valid = True 
 
     return is_valid  
+# ...
 </pre>
 
-Now, let's glue everything together inside mlops_server_endpoint().
+Now, let's glue everything together inside `mlops_server_endpoint()`.
 
 <pre class="file">
+# ...
 @app.route('/mlops-server', methods=['POST'])
 def mlops_server_endpoint():
     response = request.get_json()
@@ -70,4 +77,5 @@ def mlops_server_endpoint():
         # TODO: send comment with results to pull request
 
     return 'Awaiting POST' 
+# ...
 </pre>
