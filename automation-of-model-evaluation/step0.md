@@ -1,7 +1,3 @@
-
-## Showcase 
-![alt text](./assets/result.gif "End result gif")    
-
 ### Prerequisites
 
 - A GitHub account
