@@ -9,7 +9,7 @@ Now create a pull request to your ml-repo and add the label. You should expect:
 
 Here is the final code, if something has gone wrong, you may use this version to see the final result:
 
-<pre class="file" data-filename="index.js" data-target="replace">
+<pre class="file" data-filename="server.py" data-target="replace">
 from flask import Flask, request
 from dotenv import load_dotenv
 import requests
