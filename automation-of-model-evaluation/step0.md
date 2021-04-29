@@ -2,7 +2,7 @@
 As this tutorial makes use of GitHub itself, there are some prerequisites to do every part of this tutorial: 
 - A GitHub account
 - A public GitHub repository containing a machine learning model. 
-  - We have included a basic model which you can add to your repository (see next section below). 
+  - We have included a basic model which you can add to your repository (see next step). 
 
 ### Tutorial Outline
 
