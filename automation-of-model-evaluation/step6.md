@@ -3,11 +3,11 @@ In section 1, the communication with the repository was rather one-sided; the se
 
 Let's generate our __JWT__. The different `time` fields (`iat`, `exp`) represent for how long this should be valid in terms of seconds. For this, we'll use the `PyJWT` module.   
 
-`pip3 install pyjwt`{{execute}} 
+`pip3 install pyjwt==2.1.0`{{execute}} 
 
 Update `cryptography` as well, as `PyJWT` is dependent on it:     
 
-`pip3 install -U cryptography`{{execute}}    
+`pip3 install cryptography==3.4.7`{{execute}}    
 
 In `server.py`{{open}}, add this:
 

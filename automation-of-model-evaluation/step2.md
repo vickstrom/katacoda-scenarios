@@ -2,7 +2,7 @@
 
 Before telling GitHub, which endpoint we expect the __PUSH event__ to be sent to, we need to start listen on that specific endpoint. To listen, we will make use of the python module [Flask](https://flask.palletsprojects.com/en/1.1.x/). 
 
-`pip3 install flask`{{execute interrupt}}
+`pip3 install flask==1.1.2`{{execute interrupt}}
 
 Then, create a webserver in a file called `server.py`.      
 

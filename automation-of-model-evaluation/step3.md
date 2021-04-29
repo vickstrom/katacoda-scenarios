@@ -12,7 +12,7 @@ INSTALL_ID=<OUR INSTALL ID>
 
 As said above, these will be filled in later. To then access these variables, we will make use of the `os` & `dotenv` module. Let's install `dotenv` (`os` is standard to python)      
 
-`pip3 install python-dotenv`{{execute interrupt}}
+`pip3 install python-dotenv==0.17.0`{{execute interrupt}}
 
 Then add these to `server.py`{{open}}
 
