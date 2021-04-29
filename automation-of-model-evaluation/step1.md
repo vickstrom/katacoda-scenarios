@@ -10,15 +10,18 @@ That listens on an arbitrary port, lets say `1337`, and that expects a POST-requ
 <pre class="file" data-filename="server.py" data-target="prepend">
 from flask import Flask, request
 
+# initialize server
 app = Flask(__name__)
 
+# add route & method
 @app.route('/mlops-server', methods=['POST'])
 def mlops_server_endpoint():
     request_data = request.get_json()
     return 'Awaiting POST'
-    
+
+# start server 
 if __name__ == '__main__':
-    app.run(debug=False, port=1337)
+    app.run(host='0.0.0.0', debug=False, port=1337)
 </pre>
 
 By running `python3 server.py`{{execute interrupt}}, you start the webserver. Now the server awaits a POST request at `https://[[HOST_SUBDOMAIN]]-1337-[[KATACODA_HOST]].environments.katacoda.com/mlops-server`. The __POST__ request will contain JSON data in its body, which will contain all the data belonging to a pull request event. Lets get GitHub to send us these events to our endpoint.
