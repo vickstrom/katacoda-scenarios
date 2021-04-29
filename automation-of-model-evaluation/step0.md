@@ -50,4 +50,3 @@ The generel steps to complete our goal is described below. In further sections, 
 > ⚠️ The application created assumes that the code in the pull request is safe, if an unauthorized person decide to put in faulty code, it would run on your server. Proper security measures needs to be added. ⚠️️️️️
 
 Lets start!
-`
