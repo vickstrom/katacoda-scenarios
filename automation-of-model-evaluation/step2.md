@@ -1,6 +1,6 @@
 ## Storing environment variables
 Communicating with an API requires authenication and IDs specific to your project. The various keys and IDs we will collect in the coming parts should __not__ be uploaded to any public repository. We will handle these by a creating an environment file called `.env`. 
-`touch .env`{{execute}}
+`touch .env`{{execute interrupt}}
 
 The data we need to store there is the __app ID__, the __install ID__, and the path to the __private key__.  
 
