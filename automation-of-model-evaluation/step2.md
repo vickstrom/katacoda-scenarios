@@ -15,7 +15,7 @@ As said above, these will be filled in later. To then access these variables, we
 
 `pip3 install python-dotenv`{{execute interrupt}}
 
-Then add these to `server.py`
+Then add these to `server.py`{{open}}
 
 <pre class="file">
 # ...
