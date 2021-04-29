@@ -33,10 +33,6 @@ def generate_jwt():
 
 Using `generate_jwt()` we create a function for fetching the __access token__, which essentially sends a `POST` request to `https://api.github.com/app` in order to fetch an access token for a certain __GitHub app__.
 
-<pre class="file" data-filename="server.py" data-target="prepend">
-import json
-</pre>
-
 <pre class="file">
 # ...
 GITHUB_APP_URL = "https://api.github.com/app"
