@@ -20,7 +20,8 @@
     ],
     "intro": {
       "text": "intro.md",
-      "courseData": "scripts/background.sh"
+      "courseData": "scripts/background.sh",
+      "code": "scripts/background.sh"
     },
     "finish": {
       "text": "finish.md"
