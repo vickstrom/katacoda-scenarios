@@ -36,9 +36,9 @@ def generate_jwt():
     }
     return jwt.encode(payload, key, algorithm="RS256") 
 
-def evaluate_pull_request(commit_sha, ssh_url):
+def evaluate_pull_request(commit_sha, html_url):
     project_dst =  uuid.uuid4().hex
-    subprocess.run(["git", "clone", ssh_url, project_dst], stderr=subprocess.DEVNULL)
+    subprocess.run(["git", "clone", html_url, project_dst], stderr=subprocess.DEVNULL)
     subprocess.run(["git", "checkout", commit_sha], cwd=f"./{project_dst}", stderr=subprocess.DEVNULL)
     subprocess.run(["pip3", "install", "-r", f"{project_dst}/requirements.txt"], stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
     subprocess.run(["python3", f"{project_dst}/demo.py"], stderr=subprocess.DEVNULL)
