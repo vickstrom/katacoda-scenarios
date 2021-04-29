@@ -18,4 +18,7 @@ After all of these steps are done, it saves the result to a file to a folder. In
 
 > If you want to don't have a repository where you want to implement this, __create a new repository__ and copy the content of our [small demo](./code/ml). The `demo.py` and `requirements.txt` should be at the root of the repository.
 
+
+> __Additionally__, add an `evaluate` label to the repository as this will be our flag for showing when to run our evaluation.
+
 ![alt text](./assets/root_ml_project.png "create_app")
