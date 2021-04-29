@@ -1,54 +1,61 @@
-## 6. Connecting the dots
-Finally, we can assemble everything to evaluate a model from a certain pull request and send the results! If we would like, we could also format our message to make them more readable, kind of like this: 
+## 5. Commenting a Pull Request 
+In section 1, the communication with the repository was rather one-sided; the server could only _listen_ to __Webhook events__. In order to send requests _to_ our repository, we need to add functionality. First of all, we need to fetch an __access token__. The purpose of the __access token__ is authenticate against GitHub. This is done by constructing a __JSON Web Token__ (JWT) based on the __app ID__ and __private key__ from section 2.
 
-| Source| Loss           | Accuracy            |
-| ------| ---------------| ------------------- |
-| Head  | 1.07 | 78.0% |
-| Base  | 1.06 | 80.0% |
-| Diff  | 0.01    | -2.0%         |
+Let's generate our __JWT__. The different `time` fields (`iat`, `exp`) represent for how long this should be valid in terms of seconds (?).
 
-Let's create a utility function that creates a Markdown table with the data based on the `loss` and `accuracy` from what the pull request contains (_head_) and to where it's going (_base_). 
+<pre class="file" data-filename="server.py" data-target="prepend">
+import jwt
+import time
+</pre>
 
 <pre class="file">
 # ...
-def format_markdown_comment(head, base):
-    diff_loss = round(head['loss'] - base['loss'], 2)
-    diff_acc = round(head['accuracy'] - base['accuracy'], 2)
-    rows = [
-        f"| Source| Loss           | Accuracy            |",
-        f"| ------| ---------------| ------------------- |",
-        f"| Head  | {head['loss']} | {head['accuracy']}% |",
-        f"| Base  | {base['loss']} | {base['accuracy']}% |",
-        f"| Diff  | {diff_loss}    | {diff_acc}%         |"
-    ]
-    return "\n".join(rows)
+def generate_jwt():
+    pemfile = open(PRIVATE_KEY_PATH, 'r')
+    key = pemfile.read()
+    pemfile.close()
+    payload = {
+        "iat": int(time.time() - 60),
+        "exp": int(time.time() + (10 * 60)),
+        "iss": APP_ID
+    }
+    return jwt.encode(payload, key, algorithm="RS256") 
 # ...
 </pre>
 
-Now, add these to the `mlops_server_endpoint()`.
+Using `generate_jwt()` we create a function for fetching the __access token__, which essentially sends a `POST` request to `https://api.github.com/app` in order to fetch an access token for a certain __GitHub app__.
+
+<pre class="file" data-filename="server.py" data-target="prepend">
+import json
+</pre>
 
 <pre class="file">
 # ...
-@app.route('/mlops-server', methods=['POST'])
-def mlops_server_endpoint():
-    response = request.get_json()
+GITHUB_APP_URL = "https://api.github.com/app"
 
-    if is_valid_response(response):
-        sha_head, sha_base = get_commits(response)
-        comments_url, url_head, url_base = get_urls(response)
-
-        head_result = evaluate_pull_request(sha_head, url_head)
-        base_result = evaluate_pull_request(sha_base, url_base)
-
-        message = format_markdown_comment(head_result, base_result)
-
-        token = get_token()
-        post_message_on_pull_request(comments_url, token, message)
-    return 'Awaiting POST'
+def get_token():
+    headers = {
+        "Authorization": f"Bearer {generate_jwt()}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    r = requests.post(f"{GITHUB_APP_URL}/installations/{INSTALL_TOKEN}/access_tokens", headers=headers)
+    return r.json()["token"]
 # ...
 </pre>
 
-_Yippie!_ 🎉  
-If you now open a pull request and add an `evaluate` label you should see that this application works! This tutorial contains a proof-of-concept of how one could build a server to evaluate pull requests containing ML models. This can hopefully be altered to _your_ needs and inspire to automate more parts of _your_ development process!   
+To later post a message on a certain __pull request__, we use the __access token__ to send a `POST` request with a body containing our message.
 
-![alt text](./assets/result.gif "End result gif") 
+<pre class="file">
+# ...
+def post_message_on_pull_request(comments_url, token, message):
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    payload = {
+        "body": message
+    }
+
+    requests.post(comments_url, headers=headers, data=json.dumps(payload))
+# ...
+</pre>
